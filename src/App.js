@@ -1,32 +1,35 @@
 // Directions: Create a component called Slider that has 3 range input tags, each having a label 'R', 'G',  or 'B'.
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Colorpicker from './Components/Colorpicker.js'
+import Colorpicker from './Components/ColorPicker.js';
+import SwatchCreator from './Components/SwatchCreator.js';
+import Swatch from './Components/Swatch.js';
 
 
+const App =  () => {
 
-class App extends Component {
-
-    render() {
+    const [swatches, setSwatches] = useState([])
+    const saveSwatch = (newSwatch) => {
+        setSwatches([...swatches, newSwatch])
+    }
         return(
-            <div>
-                <br/>
-                <h1 style={{textAlign: 'center', color: 'coral'}}>Swatches Color Picker</h1>
-                <br/>
-                <div className="cps" style={{display: 'flex', alignItems: 'center', textAlign: 'center', alignContent: 'center', justifyContent: 'center'}}>
-                    <div className="cp1" style={{marginRight: '2em'}}>
-                        <Colorpicker />
-                    </div>
-                    <div className="cp2" style={{marginRight: '2em'}}>
-                        <Colorpicker />
-                    </div>
-                    <div className="cp3">
-                        <Colorpicker />
-                    </div>
+            <div className='App'>
+                <h1>Swatch Creator</h1>
+                <SwatchCreator saveSwatch={saveSwatch}/>
+                <div className='swatch-main-wrapper' >
+                    {/* <div>{swatches.length}</div> */}
+                    {swatches.map((swatch) => (
+                  
+                            <div>
+                                <Swatch title={swatch.tite} colors={swatch.colors} />
+                            </div>    
+            
+                             ) )}
+
                 </div>
             </div>
         )
-    }
+    
 
 }
 

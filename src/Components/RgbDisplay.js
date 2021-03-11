@@ -1,19 +1,21 @@
+// Hints: RGB Display, input tags
+
 import React from 'react';
 
-const Slider = (props) => {
+const RgbDisplay = (props) => {
     console.log(props);
     return(
         
-        <div className="slideContainer">
+        <div className="display">
 
             <label>
                 {props.label}
             </label>
             <input 
-                type="range" 
+                type="number" 
                 min="0" 
                 max="255"
-                vaue={props.val}
+                value={props.val}
                 onChange={(e) => props.updateColor(e.target.value)}
             />
 
@@ -22,4 +24,4 @@ const Slider = (props) => {
         )
 }
 
-export default Slider
+export default RgbDisplay

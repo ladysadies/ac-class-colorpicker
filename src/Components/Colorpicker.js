@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from './Slider.js';
 import Card from 'react-bootstrap/Card';
+import CardButton from './CardButton';
+import RgbDisplay from './RgbDisplay.js';
 
-const Colorpicker = () => {
+const Colorpicker = (props) => {
     const [red, updateRed] = useState("128");
     const [green, updateGreen] = useState("128");
     const [blue, updateBlue] = useState("128");
+
+    useEffect( () => {
+        props.setColor({r: red, g: green, b:blue})
+    })
 
     return(
         <div>
@@ -29,7 +35,27 @@ const Colorpicker = () => {
                     updateColor = {updateBlue}
                 />
 
-                <div className="circles" style={{backgroundColor: `rgb(${red},${green},${blue})`}}></div>
+                <br/>
+                <div className="circles" style={{backgroundColor: `rgb(${red},${green},${blue})`, marginLeft: 'auto', marginRight: 'auto'}}></div>
+                <br/>
+                <RgbDisplay 
+                    label ="R"
+                    val = {red}
+                    updateColor = {updateRed}
+                />
+                
+                <RgbDisplay
+                label = "G"
+                val = {green}
+                updateColor = {updateGreen} 
+                />
+
+                <RgbDisplay 
+                label = "B"
+                val = {blue}
+                updateColor = {updateBlue}
+                />
+
                 </Card.Body>
             </Card>
 
