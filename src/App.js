@@ -1,7 +1,6 @@
 // Directions: Create a component called Slider that has 3 range input tags, each having a label 'R', 'G',  or 'B'.
 import React, { useState } from 'react';
 import './App.css';
-import Colorpicker from './Components/ColorPicker.js';
 import SwatchCreator from './Components/SwatchCreator.js';
 import Swatch from './Components/Swatch.js';
 
@@ -12,18 +11,23 @@ const App =  () => {
     const saveSwatch = (newSwatch) => {
         setSwatches([...swatches, newSwatch])
     }
+    const resetSwatch = () => {
+        setSwatches([]);
+
+    }
+    // const initialState={red:'128', green:'128', blue:'128'}
         return(
             <div className='App'>
-                <h1>Swatch Creator</h1>
-                <SwatchCreator saveSwatch={saveSwatch}/>
+                <h1 className="title">Swatch Creator</h1>
+                <SwatchCreator saveSwatch={saveSwatch} resetSwatch={resetSwatch}/>
                 <div className='swatch-main-wrapper' >
                     {/* <div>{swatches.length}</div> */}
-                    {swatches.map((swatch) => (
+                    {swatches.map((swatch, id) => (
                   
                             <div>
-                                <Swatch title={swatch.tite} colors={swatch.colors} />
+                                <Swatch title={swatch.title} colors={swatch.colors} key={id} />
                             </div>    
-            
+        
                              ) )}
 
                 </div>

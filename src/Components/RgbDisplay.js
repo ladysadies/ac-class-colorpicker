@@ -3,7 +3,7 @@
 import React from 'react';
 
 const RgbDisplay = (props) => {
-    console.log(props);
+    // console.log(props);
     return(
         
         <div className="display">
